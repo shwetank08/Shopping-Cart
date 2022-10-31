@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <h1 class="text-1xl font-bold flex justify-center p-4">
+                SHOPPING CART
+            </h1>
+        </nav>
+
+        <div class="flex flex-row justify-around p-3">
+            <div class="left">
+                <div class="flex m-2">
+                    <div class="flex p-2">
+                        <img src="https://picsum.photos/200" alt="">
+                    </div>
+                    <div class="flex flex-col justify-around">
+                            <h4>Name</h4>
+                            <h4>Price: <span id="price"></span></h4>
+                            <h4>Stock: <span id="price"></span></h4>
+                            <button class="flex" id="add1">Add</button>    
+                    </div>
+                </div>
+                <div class="flex m-2">
+                    <div class="flex p-2">
+                        <img src="https://picsum.photos/200" alt="">
+                    </div>
+                    <div class="flex flex-col justify-around">
+                            <h4>Name</h4>
+                            <h4>Price: <span id="price"></span></h4>
+                            <h4>Stock: <span id="price"></span></h4>
+                            <button class="flex" id="add2">Add</button>    
+                    </div>
+                </div>
+                <div class="flex m-2">
+                    <div class="flex p-2">
+                        <img src="https://picsum.photos/200" alt="">
+                    </div>
+                    <div class="flex flex-col justify-around">
+                            <h4>Name</h4>
+                            <h4>Price: <span id="price"></span></h4>
+                            <h4>Stock: <span id="price"></span></h4>
+                            <button class="flex" id="add3">Add</button>    
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="table-auto" id="table">
+                    <thead>
+                        <tr>
+                          <th>Item</th>
+                          <th>Price</th>
+                          <th>Qtn</th>
+                          <th>Remove</th>
+                        </tr>
+                    </thead>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
