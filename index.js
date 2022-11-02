@@ -22,7 +22,96 @@ const items = [{
     stock: 0
 }];
 
+let sum = 0;
+function display(){
+    list.innerHTML = "";
+    console.log("Inside function");
+    console.log(localStorage);
+    for(const [key, value] of Object.entries(localStorage)){
+        let item = {};
+        if(key==="Peanut butter"){
+            item = {...items[0]};
+        }else if(key==="Muesli"){
+            item = {...items[1]};
+        }else if(key==="Egg"){
+            item = {...items[2]};
+        }
+        console.log(item);
+        console.log(key);
+        let div = document.createElement('div');
+        
+        let pic = document.createElement('img');
+        pic.src = "https://picsum.photos/50";
+        
+        let name = document.createElement('div');
+        name.textContent = key;
+        name.style.width = "100px"
 
+        let price = document.createElement('div');
+        price.textContent = `Rs ${item.price}`;
+        price.style.width = "50px"
+        // price.style.margin = 
+
+        let qtn = document.createElement('div');
+        qtn.textContent = value
+
+        let btnP = document.createElement('div');
+        btnP.textContent = "+";
+        btnP.style.backgroundColor = "#000000";
+        btnP.style.color = "#ffffff";
+        btnP.style.width = "25px"
+        btnP.style.height = "28px"
+        btnP.style.textAlign = "center";
+
+        let btnM = document.createElement('div');
+        btnM.textContent = "-";
+        btnM.style.backgroundColor = "#000000";
+        btnM.style.color = "#ffffff";
+        btnM.style.width = "25px"
+        btnM.style.height = "28px"
+        btnM.style.textAlign = "center";
+
+        let stockEdit = document.createElement('div');
+        stockEdit.appendChild(btnP);
+        stockEdit.appendChild(qtn);
+        stockEdit.appendChild(btnM);
+
+        stockEdit.style.display = "flex";
+        stockEdit.style.justifyContent = "space-around";
+        stockEdit.style.gap = "20px";
+
+        
+
+
+
+
+        div.appendChild(pic);
+        div.appendChild(name);
+        div.appendChild(price);
+        div.appendChild(stockEdit);
+
+        div.style.display = "flex";
+        div.style.justifyContent = "space-around";
+        div.style.width = "400px"
+        div.style.flexWrap = true;
+        list.appendChild(div);
+
+        btnM.addEventListener('click',()=>{
+            if(key === "Peanut butter" && value>9){
+                return;
+            }
+            localStorage[key] = parseInt(value)-1;
+            display();
+        })
+        btnP.addEventListener('click',()=>{
+            localStorage[key] = parseInt(value)+1;
+            display();
+        })
+    }
+
+
+    
+}
 
 
 const AddToCart1 = () => {
@@ -37,6 +126,7 @@ const AddToCart1 = () => {
         stock += 1;
         localStorage.setItem("Peanut butter",stock);
     }
+    display();
 }
 
 const AddToCart2 = () => {
@@ -51,6 +141,7 @@ const AddToCart2 = () => {
         stock += 1;
         localStorage.setItem("Muesli",stock);
     }
+    display();
 }
 
 const AddToCart3 = () => {
@@ -65,6 +156,7 @@ const AddToCart3 = () => {
         stock += 1;
         localStorage.setItem("Egg",stock);
     }
+    display();
 }
 
 add1.addEventListener('click',AddToCart1);
@@ -205,4 +297,4 @@ add3.addEventListener('click',AddToCart3);
 
 //     // console.log("cart", cart);
 //     // console.log("items",items);
-// })
+// });
