@@ -2,41 +2,49 @@ const add1 = document.querySelector("#add1");
 const add2 = document.querySelector("#add2");
 const add3 = document.querySelector("#add3");
 const list = document.querySelector("#list");
-const coupon = document.querySelector("#coupon");
 const item1 = document.querySelector("#item1");
 const item2 = document.querySelector("#item2");
 const item3 = document.querySelector("#item3");
 const pricelist = document.querySelector("#pricelist");
+const cb = document.querySelector('#cb');
+const ct = document.querySelector('#ct');
 
 const items = [
   {
     name: "Peanut butter",
     price: 250,
     stock: 10,
+    image: "./Images/Peanut butter.webp"
   },
   {
     name: "Muesli",
     price: 200,
     stock: 12,
+    image: "./Images/Muesli.jpg"
   },
   {
     name: "Egg",
     price: 10,
     stock: 20,
+    image: "./Images/Egg.webp"
   },
   {
     name: "Jam",
     price: 140,
     stock: 0,
+    image: "./Images/JAM.webp"
   },
 ];
 
 let sum = 0;
+let clicked = false;
+
+
+
 function display() {
   list.innerHTML = "";
   pricelist.innerHTML = "";
-  console.log("Inside function");
-  console.log(localStorage);
+  
   for (const [key, value] of Object.entries(localStorage)) {
     let item = {};
     if (key === "Peanut butter") {
@@ -46,12 +54,27 @@ function display() {
     } else if (key === "Egg") {
       item = { ...items[2] };
     }
-    console.log(item);
-    console.log(key);
+   
     let div = document.createElement("div");
 
     let pic = document.createElement("img");
-    pic.src = "https://picsum.photos/50";
+    if (key === "Peanut butter") {
+      pic.src = items[0].image;
+      pic.style.height = "70px";
+      pic.style.width = "70px";
+    } else if (key === "Muesli") {
+      pic.src = items[1].image;
+      pic.style.height = "70px";
+      pic.style.width = "70px";
+    } else if (key === "Egg") {
+      pic.src = items[2].image;
+      pic.style.height = "50px";
+      pic.style.width = "70px";
+    }else if(key === "Jam"){
+      pic.src = items[3].image;
+      pic.style.height = "70px";
+      pic.style.width = "70px";
+    }
 
     let name = document.createElement("div");
     name.textContent = key;
@@ -60,7 +83,7 @@ function display() {
     let price = document.createElement("div");
     price.textContent = `Rs ${item.price}`;
     price.style.width = "50px";
-    // price.style.margin =
+    
 
     let qtn = document.createElement("div");
     qtn.textContent = value;
@@ -97,26 +120,39 @@ function display() {
 
     div.style.display = "flex";
     div.style.justifyContent = "space-around";
+    div.style.alignItems = "center";
     div.style.width = "400px";
     div.style.flexWrap = true;
     list.appendChild(div);
 
     btnM.addEventListener("click", () => {
-      if (key === "Peanut butter" && (value > 9 || value < 0)) {
+      if ((key === "Peanut butter") && (value < 1 || value > 11)) {
+        return;
+      }else if (key === "Muesli" && (value > 11 || value < 1)) {
+        return;
+      }else if (key === "Egg" && (value > 19 || value < 1)) {
         return;
       }
       localStorage[key] = parseInt(value) - 1;
       display();
+      calculate();
     });
     btnP.addEventListener("click", () => {
       localStorage[key] = parseInt(value) + 1;
       display();
+      calculate();
     });
   }
 
-  coupon.style.display = "flex";
-  pricelist.innerHTML = "";
-  let sum = 0;
+  calculate();
+  
+  
+  
+}
+
+function calculate() {
+
+  sum = 0;
   for (const [key, value] of Object.entries(localStorage)) {
     if (key === "Peanut butter") {
       sum += 250 * parseInt(value);
@@ -127,18 +163,23 @@ function display() {
     }
   }
 
+  pricelist.innerHTML = "";
+  
   let div = document.createElement("div");
 
   let subtotal = document.createElement("div");
   subtotal.textContent = `Rs ${sum}`;
 
+  let text = document.createElement('div');
+  text.textContent = "Subtotal:"
+
+  div.appendChild(text);
   div.appendChild(subtotal);
 
-  pricelist.appendChild(div);
-}
+  div.style.display = "flex";
+  div.style.justifyContent = "space-around"
 
-function calculate() {
-  
+  pricelist.appendChild(div);
 }
 
 const AddToCart1 = () => {
@@ -154,7 +195,6 @@ const AddToCart1 = () => {
     localStorage.setItem("Peanut butter", stock);
   }
   display();
-  calculate();
 };
 
 const AddToCart2 = () => {
@@ -170,7 +210,6 @@ const AddToCart2 = () => {
     localStorage.setItem("Muesli", stock);
   }
   display();
-  calculate();
 };
 
 const AddToCart3 = () => {
@@ -186,128 +225,12 @@ const AddToCart3 = () => {
     localStorage.setItem("Egg", stock);
   }
   display();
-  calculate();
 };
+
+
 
 add1.addEventListener("click", AddToCart1);
 add2.addEventListener("click", AddToCart2);
 add3.addEventListener("click", AddToCart3);
-
-// <tbody>
-//     <tr>
-//       <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-//       <td>Malcolm Lockyer</td>
-//       <td>1961</td>
-//     </tr>
-//     <tr></tr>
-
-// function display(){
-//     console.log(Ucart);
-//     Ucart.forEach(e=>{
-//         let div = document.createElement('div');
-//         let ImgDiv = document.createElement('div');
-//         let img = document.createElement('img');
-//         img.src = "https://picsum.photos/50";
-//         ImgDiv.appendChild(img);
-//         let productname = document.createElement('div');
-//         productname.textContent = e.name;
-//         let counter = document.createElement('div');
-//         let plus = document.createElement('div');
-//         plus.textContent = "+";
-//         let minus = document.createElement('div');
-//         minus.textContent = "-";
-//         let count = document.createElement('div');
-//         count.textContent = 0;
-//         counter.appendChild(plus);
-//         counter.appendChild(count);
-//         counter.appendChild(minus);
-//         counter.style.display = "flex";
-
-//         div.appendChild(ImgDiv);
-//         div.appendChild(productname);
-//         div.appendChild(counter);
-
-//         div.style.display = "flex";
-//         div.style.width = "400px"
-//         div.style.justifyContent = "space-around";
-//         list.appendChild(div);
-//     })
-// }
-
-// add1.addEventListener('click',()=>{
-//     if(cart.some(e=>e.name === 'Peanut butter')){
-//         if(items[0].stock>1){
-//             items[0].stock-=1;
-//             cart.forEach(e=>{
-//                 if(e.name === 'Peanut butter'){
-//                     e.stock += 1;
-//                     return;
-//                 }
-//             })
-//         }else{
-//             return;
-//         }
-//     }else{
-//         let item = {...items[0]};
-//         item.stock = 1;
-//         // console.log("Stock",items[0].stock);
-//         items[0].stock-=1;
-//         cart.push(item);
-//     }
-//     Ucart = [...new Set(cart)];
-//     display();
-//     // console.log("cart", cart);
-//     // console.log("items",items);
-// })
-// add2.addEventListener('click',()=>{
-//     if(cart.some(e=>e.name === 'Muesli')){
-//         if(items[1].stock>1){
-//             items[1].stock-=1;
-//             cart.forEach(e=>{
-//                 if(e.name === 'Muesli'){
-//                     e.stock += 1;
-//                     return;
-//                 }
-//             })
-//         }else{
-//             return;
-//         }
-//     }else{
-//         let item = {...items[1]};
-//         item.stock = 1;
-//         // console.log("Stock",items[1].stock);
-//         items[1].stock-=1;
-//         cart.push(item);
-//     }
-//     Ucart = [...new Set(cart)];
-//     display();
-
-//     // console.log("cart", cart);
-//     // console.log("items",items);
-// })
-// add3.addEventListener('click',()=>{
-//     if(cart.some(e=>e.name === 'Egg')){
-//         if(items[2].stock>1){
-//             items[2].stock-=1;
-//             cart.forEach(e=>{
-//                 if(e.name === 'Egg'){
-//                     e.stock += 1;
-//                     return;
-//                 }
-//             })
-//         }else{
-//             return;
-//         }
-//     }else{
-//         let item = {...items[2]};
-//         item.stock = 1;
-//         // console.log("Stock",items[2].stock);
-//         items[2].stock-=1;
-//         cart.push(item);
-//     }
-//     Ucart = [...new Set(cart)];
-//     display();
-
-//     // console.log("cart", cart);
-//     // console.log("items",items);
-// });
+cb.addEventListener('click',AddCoupon);
+calculate();
