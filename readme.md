@@ -15,7 +15,7 @@
 
 ## Deployed Link
 
-[Link]()
+[Link](https://shwetank-shopping-cart.netlify.app/)
 
 
 ## Screenshots
