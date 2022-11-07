@@ -10,5 +10,16 @@
 
     - HTML
     - CSS
+    - Tailwind
     - Javascript
+
+## Deployed Link
+
+[Link]()
+
+
+## Screenshots
+
+![Image](./Images/shoppingCart1.png)
+![Image](./Images/shoppingCart2.png)
 
