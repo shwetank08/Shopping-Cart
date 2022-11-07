@@ -77,11 +77,13 @@ function display() {
     }
 
     let name = document.createElement("div");
-    name.textContent = key;
+    name.textContent = key.toUpperCase();
+    name.classList.add('font-bold')
     name.style.width = "100px";
 
     let price = document.createElement("div");
-    price.textContent = `Rs ${item.price}`;
+    price.innerHTML = `<i class="fa-solid fa-indian-rupee-sign">${item.price}</i>`
+   
     price.style.width = "50px";
     
 
@@ -89,20 +91,10 @@ function display() {
     qtn.textContent = value;
 
     let btnP = document.createElement("div");
-    btnP.textContent = "+";
-    btnP.style.backgroundColor = "#000000";
-    btnP.style.color = "#ffffff";
-    btnP.style.width = "25px";
-    btnP.style.height = "28px";
-    btnP.style.textAlign = "center";
+    btnP.innerHTML = `<i class="fa-solid fa-square-plus"></i>`
 
     let btnM = document.createElement("div");
-    btnM.textContent = "-";
-    btnM.style.backgroundColor = "#000000";
-    btnM.style.color = "#ffffff";
-    btnM.style.width = "25px";
-    btnM.style.height = "28px";
-    btnM.style.textAlign = "center";
+    btnM.innerHTML = `<i class="fa-solid fa-square-minus"></i>`
 
     let stockEdit = document.createElement("div");
     stockEdit.appendChild(btnP);
@@ -113,24 +105,34 @@ function display() {
     stockEdit.style.justifyContent = "space-around";
     stockEdit.style.gap = "20px";
 
+    let del = document.createElement('div');
+    del.innerHTML = `<i class="fa-solid fa-trash"></i>`
+    del.addEventListener('click',()=>{
+      localStorage.removeItem(key);
+      display();
+    })
+
     div.appendChild(pic);
     div.appendChild(name);
     div.appendChild(price);
     div.appendChild(stockEdit);
+    div.appendChild(del);
+    div.classList.add('hover:scale-x-125')
 
     div.style.display = "flex";
-    div.style.justifyContent = "space-around";
+    div.style.justifyContent = "space-between";
     div.style.alignItems = "center";
     div.style.width = "400px";
     div.style.flexWrap = true;
     list.appendChild(div);
+    
 
     btnM.addEventListener("click", () => {
-      if ((key === "Peanut butter") && (value < 1 || value > 11)) {
+      if ((key === "Peanut butter") && (value < 1)) {
         return;
-      }else if (key === "Muesli" && (value > 11 || value < 1)) {
+      }else if (key === "Muesli" && (value < 1)) {
         return;
-      }else if (key === "Egg" && (value > 19 || value < 1)) {
+      }else if (key === "Egg" && (value < 1)) {
         return;
       }
       localStorage[key] = parseInt(value) - 1;
@@ -138,6 +140,13 @@ function display() {
       calculate();
     });
     btnP.addEventListener("click", () => {
+      if ((key === "Peanut butter") && (value > 9)) {
+        return;
+      }else if (key === "Muesli" && (value > 11)) {
+        return;
+      }else if (key === "Egg" && (value > 19)) {
+        return;
+      }
       localStorage[key] = parseInt(value) + 1;
       display();
       calculate();

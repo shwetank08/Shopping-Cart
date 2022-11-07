@@ -5,61 +5,72 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./index.css">
     <title>Shopping Cart</title>
 </head>
-<body>
-    <div class="container">
+<body onload="display()">
+    <div class="container bg-bgc">
         <nav>
             <h1 class="text-1xl font-bold flex justify-center p-4">
                 SHOPPING CART
             </h1>
         </nav>
 
-        <div class="flex flex-row justify-around p-3">
+        <div id="cart" class="flex flex-row justify-around p-3">
             <div class="left">
-                <div class="flex m-2">
+                <div class="flex m-2 hover:scale-125 py-4">
                     <div class="flex p-2">
-                        <img src="https://picsum.photos/200" alt="">
+                        <img src="./Images/Peanut butter.webp" class="object-scale-down h-[120px] w-[120px]" alt="">
                     </div>
                     <div class="flex flex-col justify-around">
-                            <h4>Name</h4>
-                            <h4>Price: <span id="price"></span></h4>
-                            <h4>Stock: <span id="price"></span></h4>
-                            <button class="flex" id="add1">Add</button>    
+                            <h4 class="font-bold">PEANUT BUTTER</h4>
+                            <h4>Price: <span id="price"><i class="fa-solid fa-indian-rupee-sign">250</i></span></h4>
+                            <h4>Stock: <span id="price">20</span></h4>
+                            <button class="flex" id="add1"><i class="fa-solid fa-plus"></i></button>    
                     </div>
                 </div>
-                <div class="flex m-2">
+                <div class="flex m-2 hover:scale-125 py-4">
                     <div class="flex p-2">
-                        <img src="https://picsum.photos/200" alt="">
+                        <img src="./Images/Muesli.jpg" class="object-scale-down h-[120px] w-[120px]" alt="">
                     </div>
                     <div class="flex flex-col justify-around">
-                            <h4>Name</h4>
-                            <h4>Price: <span id="price"></span></h4>
-                            <h4>Stock: <span id="price"></span></h4>
-                            <button class="flex" id="add2">Add</button>    
+                            <h4 class="font-bold">MUESLI</h4>
+                            <h4>Price: <span id="price"><i class="fa-solid fa-indian-rupee-sign">200</i></span></h4>
+                            <h4>Stock: <span id="price">12</span></h4>
+                            <button class="flex" id="add2"><i class="fa-solid fa-plus"></i></button>    
                     </div>
                 </div>
-                <div class="flex m-2">
+                <div class="flex m-2 hover:scale-125 py-4">
                     <div class="flex p-2">
-                        <img src="https://picsum.photos/200" alt="">
+                        <img src="./Images/Egg.webp" class="object-scale-down h-[120px] w-[120px]" alt="">
                     </div>
                     <div class="flex flex-col justify-around">
-                            <h4>Name</h4>
-                            <h4>Price: <span id="price"></span></h4>
-                            <h4>Stock: <span id="price"></span></h4>
-                            <button class="flex" id="add3">Add</button>    
+                            <h4 class="font-bold">EGG</h4>
+                            <h4>Price: <span id="price"><i class="fa-solid fa-indian-rupee-sign">10</i></span></h4>
+                            <h4>Stock: <span id="price">20</span></h4>
+                            <button class="flex" id="add3"><i class="fa-solid fa-plus"></i></button>    
+                    </div>
+                </div>
+                <div class="flex m-2 blur-sm hover:scale-125">
+                    <div class="flex p-2">
+                        <img src="./Images/JAM.webp" class="object-scale-down h-[120px] w-[120px]" alt="">
+                    </div>
+                    <div class="flex flex-col justify-around">
+                            <h4 class="font-bold">JAM</h4>
+                            <h4>Price: <span id="price"><i class="fa-solid fa-indian-rupee-sign">140</i></span></h4>
+                            <h4>OUT OF STOCK</h4>
+                            <button class="flex" id="add3" disabled><i class="fa-solid fa-plus"></i></button>    
                     </div>
                 </div>
             </div>
-            <div class="right">
-                <div class="" id="list">
-                    <!-- <li>
-                        <h4>Item</h1>
-                        <h4>Price</h4>
-                        <h4>Qtn</h4>
-                        <h4>Remove</h4>
-                    </li> -->
+            <div id="checkout" class="right flex flex-col p-3">
+                <div id="list">
+                    
+                </div>
+                
+                <div id="pricelist" class="border-t-4 border-sky-500 mt-auto mb-auto">
+                    
                 </div>
             </div>
         </div>
